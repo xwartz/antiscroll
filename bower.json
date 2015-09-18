@@ -1,0 +1,21 @@
+{
+  "name": "antiscroll",
+  "version": "0.0.1",
+  "authors": [
+    "stddup@gmail.com"
+  ],
+  "description": "OS X Lion style cross-browser native scrolling on the web that gets out of the way.",
+  "main": "antiscroll.js",
+  "keywords": [
+    "scrollbar"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/xwartz",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
