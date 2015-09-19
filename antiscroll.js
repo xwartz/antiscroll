@@ -13,6 +13,23 @@
 
 (function ($) {
 
+  // IE10+, webkit
+  var supportScrollbarProp = (function () {
+      var nav = navigator.userAgent.toLowerCase()
+      var isNewIE = (function(){
+        if(/trident/i.test(nav)) return false;
+         var b = document.createElement('b')
+         b.innerHTML = '<!--[if lte IE 9 ]><i></i><![endif]-->'
+         return b.getElementsByTagName('i').length !== 1
+      })()
+  
+      // using css if webkit
+      var isWebkit = /webKit/i.test(nav)
+  
+      return (isWebkit || isNewIE)
+  
+    }())
+
   $.fn.antiscroll = function (options) {
     return this.each(function () {
       if ($(this).data('antiscroll')) {
@@ -67,7 +84,9 @@
    */
   Antiscroll.prototype.refreshSize = function() {
 
-    
+    // 如果支持 css 隐藏默认滚动条
+    if(supportScrollbarProp) return;
+
     // 滚动区域外层的高宽
     var h = this.el.height(),
         w = this.el.width();
