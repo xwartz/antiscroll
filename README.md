@@ -12,9 +12,18 @@ fork https://github.com/Automattic/antiscroll
 - Scrollbars are draggable.
 - Size of container can be dynamically adjusted and scrollbars will adapt.
 - Supports IE7+, Firefox 3+, Chrome, Safari
-
 - IE10+, webkit 浏览器使用 css 隐藏默认滚动条
 - 动态计算滚动区域
+
+## Options
+```js
+options = {
+    autoHide: true, // 默认自动隐藏
+    sizeFixed: false, //滚动区域大小固定, 可避免动态计算
+    vScroll: false, // 是否默认构建垂直滚动条, 根据滚动区域是否可更改(textarea)来设置
+    hScroll: false // 是否默认构建水平滚动条
+}
+```
 
 ## Demo
 
