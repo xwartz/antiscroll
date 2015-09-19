@@ -91,17 +91,6 @@
     var h = this.el.height(),
         w = this.el.width();
 
-    // @todo 
-    // 如果父级元素或者再上一层元素 display:none.. 
-    // if(this.el.css('display') === 'none') {
-    //   this.el.css('display', 'block')
-    //   w = this.el.width()
-    //   this.el.css('width', w)
-    //   // 恢复原来的属性
-    //   var sty = this.el.attr('style').replace(/display:[\s\S]block;/, '')
-    //   this.el.attr('style', sty)
-    // }
-    
     // 固定外框
     this.el.css({
       'width': w,
