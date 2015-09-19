@@ -48,7 +48,7 @@
 
     this.inner = this.el.find('.antiscroll-inner');
 
-    this.resetSize()
+    this.refresh()
     this.listenEvent()
 
   };
@@ -58,27 +58,30 @@
     // 随窗口大小更新
     var _this = this;
     $(window).on('resize', function () {
-      _this.resetSize()
+      _this.refresh()
     })
   }
 
   /**
    * 更新滚动区域的高宽
    */
-  Antiscroll.prototype.resetSize = function() {
+  Antiscroll.prototype.refreshSize = function() {
 
+    
     // 滚动区域外层的高宽
     var h = this.el.height(),
         w = this.el.width();
 
-    // if(this.inner.css('display') === 'none') {
-    //   this.inner.css('display', 'block')
-    //   w = this.el.width()
-    //   this.el.css('width', w)
-    //   // 恢复原来的属性
-    //   var sty = this.inner.attr('style').replace(/display:[\s\S]block;/, '')
-    //   this.inner.attr('style', sty)
-    // }
+    // @todo 
+    // 如果父级元素或者再上一层元素 display:none.. 
+    if(this.el.css('display') === 'none') {
+      this.el.css('display', 'block')
+      w = this.el.width()
+      this.el.css('width', w)
+      // 恢复原来的属性
+      var sty = this.el.attr('style').replace(/display:[\s\S]block;/, '')
+      this.el.attr('style', sty)
+    }
     
     // 固定外框
     this.el.css({
@@ -94,19 +97,10 @@
       , 'height': h + (this.x ? ss : 0)
     });
 
-    this.refresh();
-
   };
 
-  /**
-   * refresh scrollbars
-   *
-   * @api public
-   */
-
-  Antiscroll.prototype.refresh = function() {
+  Antiscroll.prototype.refreshBar = function() {
     var inner = this.inner.get(0);
-
     var needHScroll = this.options.hScroll ||
                       inner.scrollWidth > this.el.width() + (this.y ? scrollbarSize() : 0), 
       needVScroll = this.options.vScroll ||
@@ -133,6 +127,17 @@
         this.vertical.update();
       }
     }
+  }
+
+  /**
+   * refresh scrollbars
+   *
+   * @api public
+   */
+
+  Antiscroll.prototype.refresh = function() {
+    this.refreshSize()
+    this.refreshBar()
   };
 
   /**
