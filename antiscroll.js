@@ -86,6 +86,13 @@
 
     // 如果支持 css 隐藏默认滚动条
     if(supportScrollbarProp) return;
+    
+    // 去掉原来设置的值
+    var sty = this.el.attr('style')
+    if(sty) {
+      sty = sty.replace(/width:\s\S*;/, '').replace(/height:\s\S*;/, '')
+      this.el.attr('style', sty)
+    }
 
     // 滚动区域外层的高宽
     var h = this.el.height(),
