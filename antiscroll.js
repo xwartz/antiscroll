@@ -68,16 +68,30 @@
   Antiscroll.prototype.resetSize = function() {
 
     // 滚动区域外层的高宽
-    var elH = this.el.height(),
-        elW = this.el.width();
+    var h = this.el.height(),
+        w = this.el.width();
+
+    // if(this.inner.css('display') === 'none') {
+    //   this.inner.css('display', 'block')
+    //   w = this.el.width()
+    //   this.el.css('width', w)
+    //   // 恢复原来的属性
+    //   var sty = this.inner.attr('style').replace(/display:[\s\S]block;/, '')
+    //   this.inner.attr('style', sty)
+    // }
+    
+    // 固定外框
+    this.el.css({
+      'width': w,
+      'height': h
+    });
 
     // 默认滚动条大小
     var ss = scrollbarSize();
-
     // 高度、宽度设置为外边框的高宽加上滚动条大小
     this.inner.css({
-        'width': elW + (this.y ? ss : 0)
-      , 'height': elH + (this.x ? ss : 0)
+        'width': w + (this.y ? ss : 0)
+      , 'height': h + (this.x ? ss : 0)
     });
 
     this.refresh();
