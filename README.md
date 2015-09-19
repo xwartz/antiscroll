@@ -13,6 +13,9 @@ fork https://github.com/Automattic/antiscroll
 - Size of container can be dynamically adjusted and scrollbars will adapt.
 - Supports IE7+, Firefox 3+, Chrome, Safari
 
+- IE10+ 使用 scss 隐藏默认滚动条
+- 动态计算滚动区域
+
 ## Demo
 
 Please click [here](http://codepen.io/xwartz/pen/Yyqdqb) to see it in action.
@@ -33,10 +36,14 @@ Please click [here](http://codepen.io/xwartz/pen/Yyqdqb) to see it in action.
 2. 计算滚动区域的宽高，将其宽高加上滚动条的大小，使默认滚动条超出区域
 3. 监听事件，更新滚动条
 
+## Todo
+- [ ] Mac未插如鼠标，默认滚动条为0，Firefox下无法隐藏默认滚动条
+- [ ] 当滚动区域在调用前未渲染或 `display:none;`,没法正确计算宽高
+
 
 ## Dependencies
 
-- [jQuery](http://github.com/jquery/query)
+- [jQuery 2.0+](http://github.com/jquery/query)
 
 ## License 
 
