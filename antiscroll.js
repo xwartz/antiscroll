@@ -2,6 +2,15 @@
  * dependent on jQuery 2.0+
  */
 
+/**
+ * 接受参数 options = {
+ *   autoHide: true, // 默认自动隐藏
+ *   sizeFixed: false, //滚动区域大小固定, 可避免动态计算
+ *   vScroll: false, // 是否默认构建垂直滚动条, 根据滚动区域是否可更改(textarea)来设置
+ *   hScroll: false // 是否默认构建水平滚动条
+ * }
+ */
+
 (function ($) {
 
   $.fn.antiscroll = function (options) {
@@ -40,14 +49,18 @@
     this.inner = this.el.find('.antiscroll-inner');
 
     this.resetSize()
+    this.listenEvent()
 
+  };
+
+  Antiscroll.prototype.listenEvent = function() {
+    if(this.options.sizeFixed) return;
     // 随窗口大小更新
     var _this = this;
     $(window).on('resize', function () {
       _this.resetSize()
     })
-
-  };
+  }
 
   /**
    * 更新滚动区域的高宽
@@ -78,8 +91,12 @@
    */
 
   Antiscroll.prototype.refresh = function() {
-    var needHScroll = this.inner.get(0).scrollWidth > this.el.width() + (this.y ? scrollbarSize() : 0), 
-      needVScroll = this.inner.get(0).scrollHeight > this.el.height() + (this.x ? scrollbarSize() : 0);
+    var inner = this.inner.get(0);
+
+    var needHScroll = this.options.hScroll ||
+                      inner.scrollWidth > this.el.width() + (this.y ? scrollbarSize() : 0), 
+      needVScroll = this.options.vScroll ||
+                    inner.scrollHeight > this.el.height() + (this.x ? scrollbarSize() : 0);
 
     if (this.x) {
       if (!this.horizontal && needHScroll) {
