@@ -1,8 +1,8 @@
 {
-  "name": "antiscroll",
+  "name": "antiscrolljs",
   "version": "0.0.1",
   "authors": [
-    "stddup@gmail.com"
+    "xwartz<stddup@gmail.com>"
   ],
   "description": "OS X Lion style cross-browser native scrolling on the web that gets out of the way.",
   "main": "antiscroll.js",
