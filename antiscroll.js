@@ -17,7 +17,7 @@
   var supportScrollbarProp = (function () {
       var nav = navigator.userAgent.toLowerCase()
       var isNewIE = (function(){
-        if(/trident/i.test(nav)) return false;
+        if(!/trident/i.test(nav)) return false;
          var b = document.createElement('b')
          b.innerHTML = '<!--[if lte IE 9 ]><i></i><![endif]-->'
          return b.getElementsByTagName('i').length !== 1
