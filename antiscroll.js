@@ -104,6 +104,12 @@
       'height': h
     });
 
+    // 固定内层的宽高, fix没有出现滚动条时，元素被移位
+    $('> *', this.inner).css({
+      'width': w,
+      'height': h
+    })
+
     // 默认滚动条大小
     var ss = scrollbarSize();
     // 高度、宽度设置为外边框的高宽加上滚动条大小
