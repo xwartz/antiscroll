@@ -471,6 +471,12 @@
         topPos = topPos - diff - 3;
     }
 
+    // dirty fix position static
+    if(/static/.test(this.pane.el.css('position'))) {
+      var topPosition = this.pane.el.position().top + 2;
+      this.el.css('margin-top', topPosition)
+    }
+
     this.el
       .css('height', scrollbarHeight)
       .css('top', topPos);
